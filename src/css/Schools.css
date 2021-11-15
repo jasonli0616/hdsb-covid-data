@@ -1,0 +1,38 @@
+.schools {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-basis: 1;
+}
+
+.school {
+    width: 20%;
+    min-width: 300px;
+    max-width: 80vw;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    transition: 0.3s all;
+}
+
+.school:hover {
+    box-shadow: 0px 0px 5px 0.5px;
+}
+
+.school h3 {
+    padding: 0px;
+    margin: 0px;
+}
+
+.school p {
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 3%;
+}
+
+@media (prefers-color-scheme: dark) {
+    .school {
+        border: 1px solid white;
+    }
+}

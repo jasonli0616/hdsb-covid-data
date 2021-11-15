@@ -1,0 +1,24 @@
+.update-data {
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: fit-content;
+    padding: 10px;
+    display: block;
+    margin: auto;
+}
+
+.update-data p {
+    margin: 0;
+    text-align: center;
+}
+
+.update-data button {
+    display: block;
+    margin: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+    .update-data {
+        border: 1px solid white;
+    }
+}
