@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "HDSB COVID Data",
+  "name": "View and visualize HDSB schools COVID data.",
   "icons": [
     {
       "src": "favicon.ico",
