@@ -53,7 +53,7 @@ export default class Schools extends React.Component {
                                     total_closed_classes={this.state.json[school_name].total_closed_classes} >
                                 {school_name}
                             </School>
-                        )};
+                        )}
                     </div>
                 ) : null}
 

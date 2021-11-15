@@ -53,7 +53,7 @@ export default class Chart extends React.Component {
                                 label: 'Total Closed Classes',
                                 data: totalClosedClasses,
                                 backgroundColor: [
-                                    'rgb(55, 184, 219)'
+                                    'rgb(232, 235, 52)'
                                 ]
                             }
                         ]
