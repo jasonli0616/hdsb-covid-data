@@ -13,7 +13,7 @@ export default class App extends React.Component {
     pullData = async () => {
         this.setState({ json: null, schools: null });
 
-        const response = await fetch('http://hdsb-covid-api.herokuapp.com/api/get-data/');
+        const response = await fetch('https://hdsb-covid-api.herokuapp.com/api/get-data/');
         const json = await response.json();
 
         this.setState({ data_last_updated: new Date().toLocaleString() });
@@ -32,7 +32,7 @@ export default class App extends React.Component {
                     <button onClick={this.pullData}>Update data</button>
                     <p>Data last updated: {this.state.data_last_updated}</p>
                     <p>
-                        Data retrieved: <a href="http://hdsb-covid-api.herokuapp.com/" target="_blank" rel="noreferrer">HDSB COVID API</a>
+                        Data retrieved: <a href="https://hdsb-covid-api.herokuapp.com/" target="_blank" rel="noreferrer">HDSB COVID API</a>
                     </p>
                 </div>
                 {this.state.json ? (
