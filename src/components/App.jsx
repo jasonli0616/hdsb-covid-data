@@ -34,6 +34,9 @@ export default class App extends React.Component {
                     <p>
                         Data retrieved: <a href="https://hdsb-covid-api.herokuapp.com/" target="_blank" rel="noreferrer">HDSB COVID API</a>
                     </p>
+                    <p>
+                        <a href="https://github.com/jasonli0616/hdsb-covid-data" target="_blank" rel="noreferrer">View on GitHub</a>
+                    </p>
                 </div>
                 {this.state.json ? (
                     <Schools json={this.state.json} />
