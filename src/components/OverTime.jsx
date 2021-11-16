@@ -1,14 +1,12 @@
 import React from "react";
-import "./../css/Chart.css";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import GraphTooSmall from "./GraphTooSmall";
+import "./../css/OverTime.css";
 
-
-
-export default class Chart extends React.Component {
+export default class OverTime extends React.Component {
     state = {
         json: this.props.json,
-        schools: Object.keys(this.props.json),
+        schools: this.props.schools,
         gridColor: 'rgb(150, 150, 150)',
         labelColor: 'rgb(0, 0, 0)'
     };
@@ -26,15 +24,32 @@ export default class Chart extends React.Component {
     };
 
     render() {
-        const confirmedStudentCases = this.state.schools.map((key) => {return this.state.json[key].confirmed_student_cases});
-        const confirmedStaffCases = this.state.schools.map((key) => {return this.state.json[key].confirmed_staff_cases});
-        const totalClosedClasses = this.state.schools.map((key) => {return this.state.json[key].total_closed_classes});
+        let allData = {}
+
+        for (const date in this.state.json) {
+            let confirmedStaffCases = 0;
+            let confirmedStudentCases = 0;
+            let totalConfirmedCases = 0;
+
+            for (const school in this.state.json[date]) {
+                confirmedStaffCases += this.state.json[date][school].confirmed_staff_cases;
+                confirmedStudentCases += this.state.json[date][school].confirmed_student_cases;
+
+                totalConfirmedCases += this.state.json[date][school].confirmed_staff_cases;
+                totalConfirmedCases += this.state.json[date][school].confirmed_student_cases;
+            }
+
+            allData[date] = {confirmedStaffCases, confirmedStudentCases, totalConfirmedCases};
+        }
+        let confirmedStaffCases = Object.keys(allData).map((date) => {return allData[date].confirmedStaffCases});
+        let confirmedStudentCases = Object.keys(allData).map((date) => {return allData[date].confirmedStudentCases});
+        let totalConfirmedCases = Object.keys(allData).map((date) => {return allData[date].totalConfirmedCases});
 
         return (
             <>
-                <Bar className="chart"
+                <Line className="overtime"
                     data={{
-                        labels: this.state.schools,
+                        labels: Object.keys(allData),
                         datasets: [
                             {
                                 label: 'Confirmed Student Cases',
@@ -42,19 +57,28 @@ export default class Chart extends React.Component {
                                 backgroundColor: [
                                     'rgb(219, 112, 55)'
                                 ],
+                                borderColor: [
+                                    'rgba(219, 112, 55, 0.5)'
+                                ]
                             },
                             {
                                 label: 'Confirmed Staff Cases',
                                 data: confirmedStaffCases,
                                 backgroundColor: [
                                     'rgb(55, 184, 219)'
+                                ],
+                                borderColor: [
+                                    'rgba(55, 184, 219, 0.5)'
                                 ]
                             },
                             {
-                                label: 'Total Closed Classes',
-                                data: totalClosedClasses,
+                                label: 'Total Confirmed Cases',
+                                data: totalConfirmedCases,
                                 backgroundColor: [
                                     'rgb(232, 235, 52)'
+                                ],
+                                borderColor: [
+                                    'rgba(232, 235, 52, 0.5)'
                                 ]
                             }
                         ]
@@ -74,7 +98,7 @@ export default class Chart extends React.Component {
                                 suggestedMax: Math.max(
                                         confirmedStudentCases.reduce((a, b) => {return Math.max(a, b)}),
                                         confirmedStaffCases.reduce((a, b) => {return Math.max(a, b)}),
-                                        totalClosedClasses.reduce((a, b) => {return Math.max(a, b)})
+                                        totalConfirmedCases.reduce((a, b) => {return Math.max(a, b)})
                                     ) + 3,
                                 ticks: {
                                     precision: 0,

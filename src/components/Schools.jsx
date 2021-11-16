@@ -2,6 +2,7 @@ import React from "react";
 import Dropdown from "./Dropdown";
 import Chart from "./Chart";
 import "./../css/Schools.css";
+import OverTime from "./OverTime";
 
 class School extends React.Component {
     render() {
@@ -19,12 +20,15 @@ class School extends React.Component {
 
 const viewOptions = [
     'Overview (Default)',
-    'Chart'
+    'Chart',
+    'View over time'
 ];
 
 export default class Schools extends React.Component {
     state = {
         json: this.props.json,
+        overtime_json: this.props.overtime_json,
+        schools: this.props.schools,
         mode: viewOptions[0]
     };
 
@@ -34,6 +38,8 @@ export default class Schools extends React.Component {
 
     componentDidMount() {
         document.getElementById('change-mode').addEventListener('change', this.changeMode);
+
+        this.setState({schools: Object.keys(this.state.json)})
     };
     
     render() {
@@ -59,6 +65,10 @@ export default class Schools extends React.Component {
 
                 {this.state.mode === viewOptions[1] ? (
                     <Chart json={this.state.json} />
+                ) : null}
+
+                {this.state.mode === viewOptions[2] ? (
+                    <OverTime json={this.state.overtime_json} schools={this.state.schools} />
                 ) : null}
 
             </>

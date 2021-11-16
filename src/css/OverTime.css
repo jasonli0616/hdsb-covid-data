@@ -1,11 +1,11 @@
-.chart {
+.overtime {
     border: 1px solid black;
     border-radius: 5px;
     margin: 5px;
 }
 
 @media (prefers-color-scheme: dark) {
-    .chart {
+    .overtime {
         border: 1px solid white;
     }
 }
