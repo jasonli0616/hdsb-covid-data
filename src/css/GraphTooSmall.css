@@ -1,0 +1,17 @@
+@media (min-width: 600px) {
+    .mobile-text {
+        display: none;
+    }
+}
+
+.mobile-text {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mobile-text {
+        border: 1px solid white;
+    }
+}
