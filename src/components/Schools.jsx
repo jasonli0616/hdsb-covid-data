@@ -46,7 +46,7 @@ export default class Schools extends React.Component {
         return (
             <>
                 <div>
-                    <Dropdown id="change-mode" title="Change Mode: " options={viewOptions} />
+                    <Dropdown id="change-mode" title="Change mode: " options={viewOptions} />
                 </div>
 
                 {this.state.mode === viewOptions[0] ? (
